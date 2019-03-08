@@ -10,7 +10,7 @@ namespace TripkaroApiV0b1.MyDbContext
     {
 
         public const string Admin = "Admin";
-        public const string Tourest = "Tourest";
+        public const string Visiter = "Visiter";
         public const string Organization = "Organization";
     }
 }

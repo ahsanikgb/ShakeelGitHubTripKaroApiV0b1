@@ -14,6 +14,8 @@ using AutoMapper;
 using TripkaroApiV0b1.Helpers;
 using TripkaroApiV0b1.Services;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TripkaroApiV0b1
 {
@@ -35,8 +37,11 @@ namespace TripkaroApiV0b1
                 var xmlpath = System.AppDomain.CurrentDomain.BaseDirectory + @"TripkaroApiV0b1.xml";
                 c.IncludeXmlComments(xmlpath);
 
-            }
-    );
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
+                { "Bearer", Enumerable.Empty<string>() },
+                });
+            });
             services.AddAutoMapper();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -61,7 +66,7 @@ namespace TripkaroApiV0b1
                     {
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
                         var userId = int.Parse(context.Principal.Identity.Name);
-                        var user = userService.GetById2(userId);
+                        var user = userService.GetById(userId);
                         if (user == null)
                         {
                             // return unauthorized if user no longer exists

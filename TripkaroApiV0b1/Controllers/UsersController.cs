@@ -23,7 +23,7 @@ namespace TripkaroApiV0b1.Controllers
         private IUserService _userService;
         private IMapper _mapper;
         private readonly MyAppSettings _appSettings;
-        public UsersController(IUserService userService,IMapper mapper,IOptions<MyAppSettings> appSettings)
+        public UsersController(IUserService userService, IMapper mapper, IOptions<MyAppSettings> appSettings)
         {
             _userService = userService;
             _mapper = mapper;
@@ -44,8 +44,6 @@ namespace TripkaroApiV0b1.Controllers
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(user);
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -59,12 +57,15 @@ namespace TripkaroApiV0b1.Controllers
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
+
+            // return basic user info (without password) and token to store client side
             return Ok(new
             {
                 Id = user.Id,
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Role = user.Role,
                 Token = tokenString
             });
         }
@@ -78,9 +79,16 @@ namespace TripkaroApiV0b1.Controllers
 
             try
             {
-                // save 
-                _userService.Create(user, userDto.Password);
-                return Ok();
+                // save
+                if (userDto.Role == Role.Admin || userDto.Role == Role.Visiter || userDto.Role == Role.Organization)
+                {
+                    _userService.Create(user, userDto.Password);
+                }
+                else {
+                    return BadRequest(new { message = "Role Should be Admin,Visiter,Organization " });
+                }
+
+                return Ok("Inserted Successfully");
             }
             catch (AppException ex)
             {
@@ -94,39 +102,19 @@ namespace TripkaroApiV0b1.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users =  _userService.GetAll();
+            var users = _userService.GetAll();
             var userDtos = _mapper.Map<IList<UserDto>>(users);
             return Ok(userDtos);
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpGet("{id}")]
-        public IActionResult GetById2(int id)
+        public IActionResult GetById(int id)
         {
-            var user = _userService.GetById2(id);
+            var user = _userService.GetById(id);
             var userDto = _mapper.Map<UserDto>(user);
             return Ok(userDto);
         }
-
-        //[HttpGet("{id}")]
-        //public IActionResult GetById(int id)
-        //{
-        //    var user = _userService.GetById2(id);
-
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    // only allow admins to access other user records
-        //    int currentUserId = int.Parse(User.Identity.Name);
-        //    if (id != currentUserId && !User.IsInRole(Role.Admin))
-        //    {
-        //        return Forbid();
-        //    }
-
-        //    return Ok(user);
-        //}
-
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]UserDto userDto)
@@ -147,7 +135,7 @@ namespace TripkaroApiV0b1.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
+        [Authorize(Roles = Role.Admin)]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -16,7 +16,7 @@ namespace TripkaroApiV0b1.Services
     {
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
-        User GetById2(int id);
+        User GetById(int id);
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
@@ -57,7 +57,7 @@ namespace TripkaroApiV0b1.Services
             return _context.Users;
         }
 
-        public User GetById2(int id)
+        public User GetById(int id)
         {
             return _context.Users.Find(id);
         }

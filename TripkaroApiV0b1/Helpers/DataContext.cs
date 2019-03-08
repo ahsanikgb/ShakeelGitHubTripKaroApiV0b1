@@ -11,6 +11,8 @@ namespace TripkaroApiV0b1.Helpers
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
+        public DbSet<CurrentTrip> CurrentTrips { get; set; }
+        public DbSet<TripVisitingPlaces> TripVisitingPlacess { get; set; }
 
     }
 }
