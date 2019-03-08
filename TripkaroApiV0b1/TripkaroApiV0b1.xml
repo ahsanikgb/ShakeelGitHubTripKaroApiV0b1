@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TripkaroApiV0b1</name>
+    </assembly>
+    <members>
+        <member name="M:TripkaroApiV0b1.Controllers.UsersController.Authenticate(TripkaroApiV0b1.Dtos.UserDto)">
+            <summary>
+            This controller will generate token. we need to give 2 perameters (1) username (2) password  in response we will get jwt token 
+            </summary>
+            <param name="userParam"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
