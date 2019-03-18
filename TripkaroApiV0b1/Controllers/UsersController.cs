@@ -50,7 +50,10 @@ namespace TripkaroApiV0b1.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Surname,user.Username),
+                    new Claim(ClaimTypes.Role, user.Role),
+                    new Claim(ClaimTypes.GivenName, user.Username)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -66,7 +69,8 @@ namespace TripkaroApiV0b1.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Role = user.Role,
-                Token = tokenString
+                Token = tokenString,
+       //         GivenName=user.Username
             });
         }
 
@@ -98,7 +102,7 @@ namespace TripkaroApiV0b1.Controllers
         }
 
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles  = Role.Admin)]        
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -107,7 +111,7 @@ namespace TripkaroApiV0b1.Controllers
             return Ok(userDtos);
         }
 
-        [Authorize(Roles = Role.Admin)]
+        
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -120,6 +124,9 @@ namespace TripkaroApiV0b1.Controllers
         public IActionResult Update(int id, [FromBody]UserDto userDto)
         {
             // map dto to entity and set id
+
+            ClaimsPrincipal currentUser = this.User; ;
+
             var user = _mapper.Map<User>(userDto);
             user.Id = id;
 

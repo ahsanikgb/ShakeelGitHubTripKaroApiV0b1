@@ -10,6 +10,11 @@ namespace TripkaroApiV0b1.Helpers
         {
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+            CreateMap<CurrentTrip, User>();
+            CreateMap<CurrentTripDtos, UserDto>();
+            CreateMap<CurrentTripDtos, User>();
+            CreateMap<CurrentTrip, UserDto>();
         }
     }
 }

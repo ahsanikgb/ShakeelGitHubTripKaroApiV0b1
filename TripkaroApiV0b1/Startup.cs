@@ -66,6 +66,7 @@ namespace TripkaroApiV0b1
                     {
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
                         var userId = int.Parse(context.Principal.Identity.Name);
+               //        var CurrentUsername=context.Principal.Identity.Surname
                         var user = userService.GetById(userId);
                         if (user == null)
                         {
@@ -86,7 +87,7 @@ namespace TripkaroApiV0b1
                 };
             });
             // configure DI for application services
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, CurrentTripService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -3,21 +3,42 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TripkaroApiV0b1.Helpers;
 
 namespace TripkaroApiV0b1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190314110418_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("TripkaroApiV0b1.Dtos.TripVisitingPlacesDtos", b =>
+                {
+                    b.Property<int>("TripVisitingPlacesid")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("NearestLocations");
+
+                    b.Property<string>("PlaceName");
+
+                    b.Property<DateTime>("stayingHours");
+
+                    b.HasKey("TripVisitingPlacesid");
+
+                    b.ToTable("DtoVisitingPlacess");
+                });
 
             modelBuilder.Entity("TripkaroApiV0b1.MyDbContext.BookingCustomer", b =>
                 {
@@ -38,12 +59,6 @@ namespace TripkaroApiV0b1.Migrations
                     b.Property<bool>("IsCustomPackegeUser");
 
                     b.Property<bool>("IsSpecialOfferUser");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<int>("PackgesId");
 
@@ -72,19 +87,13 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("NameOfPerson");
 
                     b.Property<int>("SeatNumber");
 
                     b.Property<int>("TotalSeats");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("userId");
 
                     b.HasKey("BookingTokenId");
 
@@ -105,17 +114,7 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<DateTime>("DateOfArival");
-
-                    b.Property<DateTime>("DateOfDeparture");
-
                     b.Property<decimal>("Descount");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<int>("RemainingSeats");
 
@@ -125,13 +124,15 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<int>("TotalSeats");
 
-                    b.Property<string>("TripDuration");
+                    b.Property<int>("TripDuration");
 
                     b.Property<string>("TripName");
 
                     b.Property<int>("TripPackgesId");
 
                     b.Property<int>("UserId");
+
+                    b.Property<int>("VisitingPlacesId");
 
                     b.HasKey("CurrentTripId");
 
@@ -149,12 +150,6 @@ namespace TripkaroApiV0b1.Migrations
                     b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<int>("RemainingSeats");
 
@@ -185,12 +180,6 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("SpecialOfferName");
 
                     b.Property<int>("UserId");
@@ -210,19 +199,13 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("OfferVoutureCode");
 
                     b.Property<int>("SpecialOfferId");
 
                     b.Property<string>("SpecialOfferUserName");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("userId");
 
                     b.HasKey("SpecialOfferUserId");
 
@@ -241,17 +224,15 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<int>("CurrentTripId");
 
+                    b.Property<decimal>("DateOfArival");
+
+                    b.Property<decimal>("DateOfDeparture");
+
                     b.Property<string>("Description");
 
                     b.Property<decimal>("EstimatedCost");
 
                     b.Property<bool>("IsSpecialOffer");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<string>("Name");
 
@@ -278,23 +259,15 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int>("CurrentTripId");
-
                     b.Property<string>("Description");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<string>("NearestLocations");
 
                     b.Property<string>("PlaceName");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("stayingHours");
 
-                    b.Property<string>("stayingHours");
+                    b.Property<int>("userid");
 
                     b.HasKey("TripVisitingPlacesid");
 

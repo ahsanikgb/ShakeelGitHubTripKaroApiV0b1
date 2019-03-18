@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 
 namespace TripkaroApiV0b1.MyDbContext
 {
-    public class TripVisitingPlaces
+    public class BookingCustomer
     {
         [Key]
         [IgnoreDataMember]
-        public int TripVisitingPlacesid { get; set; }
-        public int CurrentTripId { get; set; }
-        public string PlaceName { get; set; }
-        public string Description { get; set; }
-      //  public string ImagesId { get; set; }          //
-        public string NearestLocations { get; set; }
-        public string stayingHours { get; set; }
+        public int BookingCustomerId { get; set; }
+        public int CustomerName { get; set; }
+        public int CustomerId { get; set; }
+        public string phoneNumber { get; set; }
+        public int PackgesId { get; set; }
+        public bool IsSpecialOfferUser { get; set; }
+        public int SpecialOfferId { get; set; }
+        public bool IsCustomPackegeUser { get; set; }
+        public int CustomPackgesId { get; set; }
+        public decimal TotalPaid { get; set; }
+        public decimal RemaningBudget { get; set; }
         [IgnoreDataMember]
         public int UserId { get; set; }
         [IgnoreDataMember]

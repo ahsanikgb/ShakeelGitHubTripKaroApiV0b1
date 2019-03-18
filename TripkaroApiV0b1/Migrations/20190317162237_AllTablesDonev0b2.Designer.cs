@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TripkaroApiV0b1.Helpers;
 
 namespace TripkaroApiV0b1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190317162237_AllTablesDonev0b2")]
+    partial class AllTablesDonev0b2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,12 +40,6 @@ namespace TripkaroApiV0b1.Migrations
                     b.Property<bool>("IsCustomPackegeUser");
 
                     b.Property<bool>("IsSpecialOfferUser");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<int>("PackgesId");
 
@@ -72,19 +68,13 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("NameOfPerson");
 
                     b.Property<int>("SeatNumber");
 
                     b.Property<int>("TotalSeats");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("userId");
 
                     b.HasKey("BookingTokenId");
 
@@ -105,17 +95,7 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<DateTime>("DateOfArival");
-
-                    b.Property<DateTime>("DateOfDeparture");
-
                     b.Property<decimal>("Descount");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<int>("RemainingSeats");
 
@@ -150,12 +130,6 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<int>("RemainingSeats");
 
                     b.Property<string>("ReservationName");
@@ -185,12 +159,6 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("SpecialOfferName");
 
                     b.Property<int>("UserId");
@@ -210,19 +178,13 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("OfferVoutureCode");
 
                     b.Property<int>("SpecialOfferId");
 
                     b.Property<string>("SpecialOfferUserName");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("userId");
 
                     b.HasKey("SpecialOfferUserId");
 
@@ -241,17 +203,15 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<int>("CurrentTripId");
 
+                    b.Property<decimal>("DateOfArival");
+
+                    b.Property<decimal>("DateOfDeparture");
+
                     b.Property<string>("Description");
 
                     b.Property<decimal>("EstimatedCost");
 
                     b.Property<bool>("IsSpecialOffer");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
 
                     b.Property<string>("Name");
 
@@ -282,19 +242,13 @@ namespace TripkaroApiV0b1.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("ModifiedUserId");
-
                     b.Property<string>("NearestLocations");
 
                     b.Property<string>("PlaceName");
 
-                    b.Property<int>("UserId");
-
                     b.Property<string>("stayingHours");
+
+                    b.Property<int>("userid");
 
                     b.HasKey("TripVisitingPlacesid");
 

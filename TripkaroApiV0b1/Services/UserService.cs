@@ -16,6 +16,7 @@ namespace TripkaroApiV0b1.Services
     {
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
+        IEnumerable<CurrentTrip> GetAllTrip();
         User GetById(int id);
         User Create(User user, string password);
         void Update(User user, string password = null);
@@ -23,11 +24,11 @@ namespace TripkaroApiV0b1.Services
     }
 
 
-    public class UserService : IUserService
+    public class CurrentTripService : IUserService
     {
         
         private DataContext _context;
-        public UserService(DataContext context)
+        public CurrentTripService(DataContext context)
         {
             _context = context;
         }
@@ -57,10 +58,24 @@ namespace TripkaroApiV0b1.Services
             return _context.Users;
         }
 
+        public IEnumerable<CurrentTrip> GetAllTrip()
+        {
+            return _context.CurrentTrips;
+        }
+
         public User GetById(int id)
         {
             return _context.Users.Find(id);
         }
+
+        //public User GetNames(int id)
+        //{
+        //    var data = GetById(id);
+        //    foreach (var items in data)
+        //    {
+                
+        //    }
+        //}
 
         public User Create(User user, string password)
         {

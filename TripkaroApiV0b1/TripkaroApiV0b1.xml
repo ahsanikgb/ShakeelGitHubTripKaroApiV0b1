@@ -4,12 +4,235 @@
         <name>TripkaroApiV0b1</name>
     </assembly>
     <members>
+        <member name="M:TripkaroApiV0b1.Controllers.CurrentTripsController.GetCurrentTrips">
+            <summary>
+            GET: api/CurrentTrips
+            This Method Will Fetch All Three table Attributes By Joining
+            CurrentTrip,VisitingPlacess,TripPackges Table
+            To Get Record We Need To Update TripPackges And Visiting Placess By Adding CurrentTripId Column
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.CurrentTripsController.GetCurrentTrip(System.Int32)">
+            <summary>
+            GET: api/TestCurrentTrips/5
+            this method will return only Current Trip Data By assigning Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.CurrentTripsController.PutCurrentTrip(System.Int32,TripkaroApiV0b1.MyDbContext.CurrentTrip)">
+            <summary>
+            PUT: api/TestCurrentTrips/5
+            This method can update Current Trip But (CurrentTripId,ModifiedBy,ModifiedDate,ModifiedUserId)
+            Will Automatically Updated
+            </summary>
+            <param name="id"></param>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.CurrentTripsController.PostCurrentTrip(TripkaroApiV0b1.MyDbContext.CurrentTrip)">
+            <summary>
+            POST: api/TestCurrentTrips
+            this Method can Insert Record In CurrentTrip, The Admin And Organization Role can Add Add Records
+            Visiter has not permition to Insert Data
+            </summary>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.CurrentTripsController.DeleteCurrentTrip(System.Int32)">
+            <summary>
+            DELETE: api/TestCurrentTrips/5
+            This is a delete Request. And Only Admin Has the permition to delete from currentTrip data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOffersController.PutSpecialOffer(System.Int32,TripkaroApiV0b1.MyDbContext.SpecialOffer)">
+            <summary>
+            PUT: api/SpecialOffers/5
+            This method can update SpecialOffers But (SpecialOfferSId,ModifiedBy,ModifiedDate,ModifiedUserId)
+            Will Automatically Updated
+            </summary>
+            <param name="id"></param>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOffersController.PostSpecialOffer(TripkaroApiV0b1.MyDbContext.SpecialOffer)">
+            <summary>
+             POST: api/SpecialOffers
+            this Method can Insert Record In SpecialOffers, The Admin And Organization Role can Insert Records
+            Visiter has not permition to Insert Data
+            </summary>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOffersController.DeleteSpecialOffer(System.Int32)">
+            <summary>
+            DELETE: api/SpecialOffers/5
+            This is a delete Request. And Only Admin Has the permition to delete from SpecialOffers data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOfferUsersController.GetSpecialOfferUserss">
+            <summary>
+            GET: api/SpecialOfferUsers
+            This Method Will Fetch All Three table Attributes By Joining
+            SpecialOffer,SpecialOfferUsers,Users Table
+            This Is Only For Admin Role, Admin Can See All Subscribed Users Data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOfferUsersController.GetSpecialOfferUsers(System.Int32)">
+            <summary>
+            GET: api/SpecialOfferUsers/5
+            this method will return only SpecialOfferUsers  Data By assigning it to a specific Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOfferUsersController.PutSpecialOfferUsers(System.Int32,System.String,TripkaroApiV0b1.MyDbContext.SpecialOfferUsers)">
+            <summary>
+            PUT: api/SpecialOfferUsers/5
+            This method can update SpecialOfferUsers But (SpecialOfferUserId,ModifiedBy,ModifiedDate,ModifiedUserId)
+            Will Automatically Updated
+            This Is For Visiter They Want to Modify Special Offer They Need To Pass to Peramerter First Is "Id" And The Second is "VoutureCode"
+            </summary>
+            <param name="id"></param>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOfferUsersController.PostSpecialOfferUsers(TripkaroApiV0b1.MyDbContext.SpecialOfferUsers)">
+            <summary>
+            POST: api/SpecialOfferUsers
+            this Method can Insert Record In SpecialOfferUsers, This Is For Visters To Subscribed Any Deal.
+            if the Deals limit Exceed 2 It will return Bad Request and If the Subscription Limit Is Less then 2 it will allow you to subscribed
+            note: UserId,CreatedBy and Created Date automatically updated the method will return vouture code letter on user can get descount if the vouture code is valid
+            Visiter has not permition to Insert Data
+            </summary>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.SpecialOfferUsersController.DeleteSpecialOfferUsers(System.Int32)">
+            <summary>
+            DELETE: api/SpecialOfferUsers/5
+            This is a delete Request. And Only Admin Has the permition to delete from SpecialOfferUsers data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripPackgesController.GetTripPackgess">
+            <summary>
+            GET: api/TripPackges
+            Method Will Returun All PackageDetails with CurrentTrip Name 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripPackgesController.GetTripPackges(System.Int32)">
+            <summary>
+            GET: api/TripPackges/5
+            method Will Return All Package Data Assigning By A specific Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripPackgesController.PutTripPackges(System.Int32,TripkaroApiV0b1.MyDbContext.TripPackges)">
+            <summary>
+            PUT: api/TripPackges/5
+            This method can update TripPackages But (TripPackgesId,ModifiedBy,ModifiedDate,ModifiedUserId)
+            Will Automatically Updated
+            </summary>
+            <param name="id"></param>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripPackgesController.PostTripPackges(TripkaroApiV0b1.MyDbContext.TripPackges)">
+            <summary>
+            POST: api/TripPackges
+            this Method can Insert Record In TripPackges, The Admin And Organization Role can Add Add Records
+            Visiter has not permition to Insert Data
+            </summary>
+            <param name="currentTrip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripPackgesController.DeleteTripPackges(System.Int32)">
+            <summary>
+            DELETE: api/TripPackges/5
+            This is a delete Request. And Only Admin Has the permition to delete from TripPackges data
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripVisitingPlacesController.GetTripVisitingPlacess">
+             <summary>
+            GET: api/TripVisitingPlaces
+             This method will Return Visiting Placess data And Current Trip name By Its Id
+             Join used Between VisitingPlacess and CurrentTrip To retrive CurrentTrip Name
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripVisitingPlacesController.GetTripVisitingPlaces(System.Int32)">
+            <summary>
+            GET: api/TripVisitingPlaces/5
+            This Method Will Return Only Visting Placess data By Its Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripVisitingPlacesController.PutTripVisitingPlaces(System.Int32,TripkaroApiV0b1.MyDbContext.TripVisitingPlaces)">
+            <summary>
+            PUT: api/TripVisitingPlaces/5
+            This method can update TripVisitingPlacess But (TripVisitingPlacesid,ModifiedBy,ModifiedDate,ModifiedUserId)
+            Will Automatically Updated
+            </summary>
+            <param name="id"></param>
+            <param name="tripVisitingPlaces"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.TripVisitingPlacesController.PostTripVisitingPlaces(TripkaroApiV0b1.MyDbContext.TripVisitingPlaces)">
+            <summary>
+            POST: api/TripVisitingPlaces
+            </summary>
+            <param name="tripVisitingPlaces"></param>
+            <returns></returns>
+        </member>
         <member name="M:TripkaroApiV0b1.Controllers.UsersController.Authenticate(TripkaroApiV0b1.Dtos.UserDto)">
             <summary>
             This controller will generate token. we need to give 2 perameters (1) username (2) password  in response we will get jwt token 
             </summary>
             <param name="userParam"></param>
             <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.UserSelfPackgesController.PutUserSelfPackges(System.Int32,TripkaroApiV0b1.MyDbContext.UserSelfPackges)">
+            <summary>
+            // PUT: api/UserSelfPackges/5
+            Admin Has The Permition To Update Records Into this Method
+            </summary>
+            <param name="id"></param>
+            <param name="userSelfPackges"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.UserSelfPackgesController.PostUserSelfPackges(System.Int32,TripkaroApiV0b1.MyDbContext.UserSelfPackges)">
+            <summary>
+             POST: api/UserSelfPackges
+             Everyone  have  The Permition To Add Some Records Into SelfPackges Controller
+            </summary>
+            <param name="userSelfPackges"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TripkaroApiV0b1.Controllers.UserSelfPackgesController.DeleteUserSelfPackges(System.Int32)">
+            <summary>
+            DELETE: api/UserSelfPackges/5
+            Only Admin  Has the Permition To Delete Self Packges
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:TripkaroApiV0b1.MyDbContext.SeatReservation.ReservedSeatNumber">
+            <summary>
+            Used For Seat Conformation
+            </summary>
         </member>
     </members>
 </doc>

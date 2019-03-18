@@ -4,29 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using TripkaroApiV0b1.Dtos;
 
 namespace TripkaroApiV0b1.MyDbContext
 {
-    public class CurrentTrip
+    public class UserSelfPackges
     {
         [Key]
         [IgnoreDataMember]
-        public int CurrentTripId { get; set; }
-        public string TripName { get; set; }
-        public string StartingLocation { get; set; }
-        public decimal TotalBudget { get; set; }
+        public int UserSelfPackgesId { get; set; }
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public decimal ActualCost { get; set; }
         public decimal Descount { get; set; }
-        //   public int VisitingPlacesId { get; set; }   
-        public DateTime DateOfDeparture { get; set; }
-        public DateTime DateOfArival { get; set; }
-        public string TripDuration { get; set; }
-        public string AdvisorsContact1 { get; set; }
-        public string AdvisorsContact2 { get; set; }
-        public int TotalSeats { get; set; }
-        public int RemainingSeats { get; set; }
-        public int TripPackgesId { get; set; }      //
+        public decimal RecentCost { get; set; }
+
+        public bool IsSpecialOfferUser { get; set; }
+        public int SpecialOfferId { get; set; }
         [IgnoreDataMember]
+        public int UserPackgesId { get; set; }
         public int UserId { get; set; }
         [IgnoreDataMember]
         public int ModifiedUserId { get; set; }
@@ -38,8 +33,6 @@ namespace TripkaroApiV0b1.MyDbContext
         public string ModifiedBy { get; set; }
         [IgnoreDataMember]
         public DateTime ModifiedDate { get; set; }
- 
-
 
     }
 }
